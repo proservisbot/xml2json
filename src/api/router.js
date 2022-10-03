@@ -17,7 +17,9 @@ module.exports = (dependencies) => {
 
     const validationResult = SCHEMA.validate(req.body, { abortEarly: false });
     if (validationResult.error) {
-      next(new Error(validationResult.error.message));
+      const err = new Error(validationResult.error.message);
+      err.status = 400;
+      return next(err);
     }
     const parser = new xml2js.Parser();
     const json = await parser.parseStringPromise(req.body.xml);

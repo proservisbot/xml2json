@@ -1,5 +1,5 @@
-module.exports = ({ env, ssmCache }) => async (req, res, next) => {
-  const apiKey = await ssmCache.getSSMValue(env.getApiKeySSMParameter(), true, this.logger);
+module.exports = ({ environment, ssmCache }) => async (req, res, next) => {
+  const apiKey = await ssmCache.getSSMValue(environment.getApiKeySSMParameter(), true, this.logger);
   const { headers: { authorization } } = req;
 
   if (authorization) {

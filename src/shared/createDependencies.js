@@ -5,15 +5,14 @@ const Environment = require('./Environment');
 let ssmCache;
 
 module.exports = () => {
-  const env = new Environment(process.env);
-  console.log(env);
+  const environment = new Environment(process.env);
   const ssm = new AWS.SSM();
   if (!ssmCache) {
     ssmCache = new SSMCache({ ssm });
   }
 
   return {
-    env,
+    environment,
     ssmCache
   };
 };
