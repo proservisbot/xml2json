@@ -1,0 +1,42 @@
+{
+  "name": "xml2json",
+  "version": "0.0.1",
+  "description": "xml2json project to be used in a sherpa",
+  "dependencies": {
+    "express": "^4.18.1",
+    "joi": "^17.6.2",
+    "serverless-http": "^3.0.2",
+    "xml2js": "^0.4.23"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.1225.0",
+    "clone": "^2.1.2",
+    "depcheck": "^1.4.2",
+    "eslint": "^8.0.1",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-mocha": "^9.0.0",
+    "mocha": "^10.0.0",
+    "nyc": "^15.1.0",
+    "pre-commit": "^1.2.2",
+    "sinon": "^14.0.0",
+    "supertest": "^6.2.4"
+  },
+  "scripts": {
+    "test": "nyc node_modules/.bin/mocha test/**/*",
+    "report": "nyc report --reporter=lcov",
+    "lint": "./node_modules/.bin/eslint .",
+    "depcheck": "./node_modules/.bin/depcheck --ignores pre-commit .",
+    "zip": "rm -rf node_modules && npm i --production && zip -FSr xml2json-$npm_package_version.zip node_modules src && npm i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/proservisbot/xml2json"
+  },
+  "author": "ServisBot",
+  "pre-commit": [
+    "lint",
+    "depcheck",
+    "test"
+  ]
+}
